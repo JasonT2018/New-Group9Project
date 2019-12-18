@@ -37,8 +37,11 @@ class Game extends Component {
       >
         <Card.Img className="image-responsive game-review-img" variant="top" src={image} />
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Link to={gameId}>View Game</Link>
+          <Card.Title>
+          <Link to={gameId}>{title}</Link>
+
+          </Card.Title>
+
         </Card.Body>
       </Card>
     );
