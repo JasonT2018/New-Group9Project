@@ -7,24 +7,27 @@ import PropTypes from 'prop-types';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import Signup from './register/signup';
 import LoginButton from './register/loginbutton';
+import gateway from '../logo/gateway.png';
 
 
 //Redux
 import { loginUser, logoutUser } from '../../Redux/actions/userActions';
 
+
 class Header extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { addModalShowSignup: false }
+    this.state = { addModalShowSignup: false}
   }
 
   handleLogout = () => {
     this.props.logoutUser();
   }
 
+
   render() {
-    let addModalCloseSignup = () => this.setState({addModalShowSignup: false});
+    let addModalCloseSignup =() => this.setState({addModalShowSignup: false});
 
     const { authenticated } = this.props.user;
 
@@ -35,33 +38,42 @@ class Header extends Component {
     );
 
     const guestLinks = (
-          <LoginButton/>
+      <LoginButton />
     );
 
     return (
-        <header>
+        <header className="sansserif">
+
           <div className='logo'>
-          LOGO
+          <img src = {gateway} alt="Gateway" style={{width: '10%'}} />
+          <div  style={{color: '#81C91D'}}>The Gateway</div>
           </div>
 
+            <div>
 
           <nav>
-            <ul>
-              <li className="first">
+
+            <ul  >
+
+              <li className="first" >
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/GameGenres">Genres</Link>
+                <Link to="/Games">Games</Link>
+              </li>
+              <li>
+                <Link to="/FAQ">FAQ</Link>
               </li>
 
               { authenticated ? userLinks: guestLinks }
+
 
               <li className="last">
                 <ButtonToolbar>
                   <Button
                     variant = 'primary'
                     onClick={()=> this.setState({ addModalShowSignup: true})}>
-                    Signup
+                    Register
                   </Button>
 
                   <Signup
@@ -71,8 +83,11 @@ class Header extends Component {
 
                 </ButtonToolbar>
               </li>
+
             </ul>
           </nav>
+
+          </div>
 
         </header>
     );
